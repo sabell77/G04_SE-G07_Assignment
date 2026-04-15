@@ -62,6 +62,13 @@ public class Assignment {
             public void actionPerformed(ActionEvent e) {
                 String text = inputField.getText();
                 Encoded encoder = new Encoded(text);
+
+                //Contributed by [Member Name]
+                displayArea.setBackground(new Color(245, 245, 250)); // Very light grey/blue tint
+                displayArea.setForeground(new Color(106, 13, 173));  // Bold Purple text
+                displayArea.setFont(new Font("Monospaced", Font.BOLD, 14)); // Monospaced keeps characters aligned
+                displayArea.setMargin(new Insets(15, 15, 15, 15));   // Adds "breathable" space inside the box
+
                 if (encoder.checkStringValidity(text)) {
                     int nonSpaceCount = encoder.countCharacters(text);
                     int gShift = encoder.generateshift();
@@ -77,6 +84,44 @@ public class Assignment {
                                                 );
 
                     displayArea.setText(output);
+
+                    // --- SUCCESS DIALOG CODE STARTS HERE ---
+                    JDialog successDialog = new JDialog(frame, "Success", true);
+                    successDialog.getContentPane().setBackground(Color.WHITE);
+
+                    JPanel successPanel = new JPanel();
+                    successPanel.setLayout(new BoxLayout(successPanel, BoxLayout.Y_AXIS));
+                    successPanel.setBackground(Color.WHITE);
+                    successPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+                    // Success Message
+                    JLabel successMsg = new JLabel("Encoding completed successfully!");
+                    successMsg.setForeground(new Color(106, 13, 173)); // Bold Purple
+                    successMsg.setFont(new Font("Arial", Font.BOLD, 14));
+                    successMsg.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+                    // Spacer
+                    successPanel.add(successMsg);
+                    successPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+
+                    // Reuse your RoundButton for the "Great!" or "OK" button
+                    RoundButton okBtn = new RoundButton("Great!");
+                    okBtn.setBackground(new Color(106, 13, 173));
+                    okBtn.setForeground(Color.WHITE);
+                    okBtn.setPreferredSize(new Dimension(100, 35));
+                    okBtn.setMaximumSize(new Dimension(100, 35));
+                    okBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    okBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    
+                    okBtn.addActionListener(ae -> successDialog.dispose());
+
+                    successPanel.add(okBtn);
+                    successDialog.add(successPanel);
+                    successDialog.pack();
+                    successDialog.setLocationRelativeTo(frame);
+                    successDialog.setVisible(true);
+                    // --- SUCCESS DIALOG CODE ENDS HERE ---                          
+
                 } else {
                         //Create the dialog
                         JDialog errorDialog = new JDialog(frame, "Error", true);
@@ -118,11 +163,6 @@ public class Assignment {
                         errorDialog.setLocationRelativeTo(frame);
                         errorDialog.setVisible(true);
                  }
-                 //Contributed by [Member Name]
-                displayArea.setBackground(new Color(245, 245, 250)); // Very light grey/blue tint
-                displayArea.setForeground(new Color(106, 13, 173));  // Bold Purple text
-                displayArea.setFont(new Font("Monospaced", Font.BOLD, 14)); // Monospaced keeps characters aligned
-                displayArea.setMargin(new Insets(15, 15, 15, 15));   // Adds "breathable" space inside the box
             }      
         };
         encodeButton.addActionListener(encoderTask);
