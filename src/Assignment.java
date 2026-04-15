@@ -38,16 +38,17 @@ public class Assignment {
         
 
         RoundButton encodeButton = new RoundButton("Encode");
-        encodeButton.setBackground(new Color(106, 13, 173)); // Cute Sky Blue
+        encodeButton.setBackground(new Color(106, 13, 173)); 
         encodeButton.setForeground(Color.WHITE);
         encodeButton.setPreferredSize(new Dimension(100, 30)); // Makes it a nice pill shape
         inputPanel.add(encodeButton);
 
         // 3. Result Section (Bottom)
-        JTextArea displayArea = new JTextArea(10, 35);
+        JTextArea displayArea = new JTextArea(10,35);
         displayArea.setEditable(false);
         displayArea.setBorder(BorderFactory.createTitledBorder("Encoder Output"));
         JScrollPane scrollPane = new JScrollPane(displayArea);
+        
 
         // --- Shared Logic ---
         ActionListener encoderTask = new ActionListener() {
@@ -61,12 +62,23 @@ public class Assignment {
                     int finalShift = gShift + nonSpaceCount;
                     String result = encoder.applyCipher(text, finalShift);
 
-                    displayArea.setText("Non-space characters: " + nonSpaceCount + "\n" +
-                                      "Final Shift: " + finalShift + "\n" +
-                                      "Encoded Result: " + result);
+                    String output = String.format("%-20s: %d\n" +
+                                                  "%-20s: %d\n" +
+                                                  "%-20s: %s",
+                                         "Non-space characters", nonSpaceCount,
+                                                  "Final Shift         ", finalShift,
+                                                  "Encoded Result      ", result
+                                                );
+
+                    displayArea.setText(output);
                 } else {
                     JOptionPane.showMessageDialog(frame, "Invalid Input! Use lowercase & spaces.");
                 }
+                // Contributed by [Member Name]
+                displayArea.setBackground(new Color(245, 245, 250)); // Very light grey/blue tint
+                displayArea.setForeground(new Color(106, 13, 173));  // Bold Purple text
+                displayArea.setFont(new Font("Monospaced", Font.BOLD, 14)); // Monospaced keeps characters aligned
+                displayArea.setMargin(new Insets(15, 15, 15, 15));   // Adds "breathable" space inside the box
             }
         };
 

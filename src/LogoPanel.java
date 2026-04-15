@@ -29,10 +29,9 @@ public class LogoPanel extends JPanel {
         int x = (getWidth() - size) / 2; // Center horizontally
         int y = (getHeight() - size) / 2; // Center vertically
 
-        // Set circle color (e.g., a "cute" light blue)
-        g2d.setColor(new Color(145, 95, 239)); 
+        
+        g2d.setColor(new Color (106,13,173));
         g2d.fill(new Ellipse2D.Double(x, y, size, size)); // Fill the circle
-
         
         // --- Draw the Text ---
         g2d.setColor(Color.WHITE); // Text color
