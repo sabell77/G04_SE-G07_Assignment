@@ -3,72 +3,75 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Class: Assignment
- * Purpose: Main entry point and GUI implementation using Java Swing. [cite: 49, 62]
- */
 public class Assignment {
     public static void main(String[] args) {
-        // // Contributed by: [Member 3 Name]
         JFrame frame = new JFrame("String Encoder");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Standard close operation [cite: 18]
-        frame.setSize(450, 500);
-        frame.setLayout(new FlowLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 600); // Height increased for vertical stack
+        
+        // Using a vertical BoxLayout to stack items top-to-bottom
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(new Color(230, 230, 250));
 
-        // --- Add the Custom Logo Panel ---
+        // 1. Logo (Top)
         LogoPanel customLogo = new LogoPanel();
-        frame.add(customLogo); // This will appear at the top
-        // ---------------------------------
+        customLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // UI Components [cite: 50, 51, 52]
-        JTextField inputField = new JTextField(25);
+        //2. Input Section Panel (Horizontal)
+        JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        // MATCH INPUT PANEL COLOR
+        inputPanel.setBackground(new Color(245, 245, 255));
+    
+    
+        JLabel label = new JLabel("Enter string:");
+        label.setForeground(new Color(75, 0, 130)); // Darker purple text for contrast
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        JTextField inputField = new JTextField(20);
         JButton encodeButton = new JButton("Encode");
+        inputPanel.add(label);
+        inputPanel.add(inputField);
+        inputPanel.add(encodeButton);
+
+        // 3. Result Section (Bottom)
         JTextArea displayArea = new JTextArea(10, 35);
         displayArea.setEditable(false);
-        displayArea.setBorder(BorderFactory.createEtchedBorder());
+        displayArea.setBorder(BorderFactory.createTitledBorder("Encoder Output"));
+        JScrollPane scrollPane = new JScrollPane(displayArea);
 
-        frame.add(new JLabel("Enter string (lowercase & numbers):"));
-        frame.add(inputField);
-        frame.add(encodeButton);
-        frame.add(new JScrollPane(displayArea));
-
-        // // Contributed by: [Member 4 Name]
-        // Shared ActionListener to handle both button clicks and Enter key presses
+        // --- Shared Logic ---
         ActionListener encoderTask = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = inputField.getText();
                 Encoded encoder = new Encoded(text);
-
-                // 1. Validate input using Encoded class 
                 if (encoder.checkStringValidity(text)) {
-                    // 2. Process encoding steps [cite: 26, 27, 29, 30]
                     int nonSpaceCount = encoder.countCharacters(text);
                     int gShift = encoder.generateshift();
                     int finalShift = gShift + nonSpaceCount;
                     String result = encoder.applyCipher(text, finalShift);
 
-                    // 3. Display results (Hidden groupID and groupShift) [cite: 52, 53]
                     displayArea.setText("Non-space characters: " + nonSpaceCount + "\n" +
                                       "Final Shift: " + finalShift + "\n" +
-                                      "Encoded Result: " + result + "\n\n" +
-                                      "Encoding completed successfully.");
+                                      "Encoded Result: " + result);
                 } else {
-                    // 4. Error handling for invalid characters [cite: 18]
-                    JOptionPane.showMessageDialog(frame, 
-                        "Invalid Input! Please use only lowercase letters (a-z), digits (0-9), and spaces.", 
-                        "Input Error", 
-                        JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Invalid Input! Use lowercase & spaces.");
                 }
             }
         };
 
-        // Attach the logic to the button
         encodeButton.addActionListener(encoderTask);
-        
-        // Attach the logic to the text field (Triggers on 'Enter')
         inputField.addActionListener(encoderTask);
 
+        // Add everything to the main vertical panel
+        mainPanel.add(customLogo);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add space
+        mainPanel.add(inputPanel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add space
+        mainPanel.add(scrollPane);
+
+        frame.add(mainPanel);
         frame.setVisible(true);
     }
 }
