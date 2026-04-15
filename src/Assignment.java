@@ -12,8 +12,13 @@ public class Assignment {
         // // Contributed by: [Member 3 Name]
         JFrame frame = new JFrame("String Encoder");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Standard close operation [cite: 18]
-        frame.setSize(450, 350);
+        frame.setSize(450, 500);
         frame.setLayout(new FlowLayout());
+
+        // --- Add the Custom Logo Panel ---
+        LogoPanel customLogo = new LogoPanel();
+        frame.add(customLogo); // This will appear at the top
+        // ---------------------------------
 
         // UI Components [cite: 50, 51, 52]
         JTextField inputField = new JTextField(25);
