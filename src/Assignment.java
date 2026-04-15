@@ -44,12 +44,20 @@ public class Assignment {
         inputPanel.add(encodeButton);
 
         // 3. Result Section (Bottom)
-        JTextArea displayArea = new JTextArea(10,35);
-        displayArea.setEditable(false);
-        displayArea.setBorder(BorderFactory.createTitledBorder("Encoder Output"));
-        JScrollPane scrollPane = new JScrollPane(displayArea);
-        
+        JTextArea displayArea = new JTextArea();
+        displayArea.setBackground(new Color(250, 250, 255)); // Matching "Cute" background
+        displayArea.setOpaque(false); // Crucial for showing the rounded background
+        displayArea.setLineWrap(true);
+        displayArea.setWrapStyleWord(true);
 
+        //Wrap it in the RoundScrollPane
+        // (radius: 30 for smooth corners)
+        RoundScrollPane scrollPane = new RoundScrollPane(displayArea, 30);
+        scrollPane.setPreferredSize(new Dimension(400, 200));
+
+        // Add to your panel
+        mainPanel.add(scrollPane);
+    
         // --- Shared Logic ---
         ActionListener encoderTask = new ActionListener() {
             @Override
