@@ -33,9 +33,14 @@ public class Assignment {
         inputField.setBackground(Color.WHITE);
         inputField.setFont(new Font("SansSerif", Font.PLAIN, 14));
         
-        JButton encodeButton = new JButton("Encode");
         inputPanel.add(label);
         inputPanel.add(inputField);
+        
+
+        RoundButton encodeButton = new RoundButton("Encode");
+        encodeButton.setBackground(new Color(106, 13, 173)); // Cute Sky Blue
+        encodeButton.setForeground(Color.WHITE);
+        encodeButton.setPreferredSize(new Dimension(100, 30)); // Makes it a nice pill shape
         inputPanel.add(encodeButton);
 
         // 3. Result Section (Bottom)
