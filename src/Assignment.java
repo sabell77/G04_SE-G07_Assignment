@@ -9,21 +9,19 @@ public class Assignment {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600); // Height increased for vertical stack
         
-        // Using a vertical BoxLayout to stack items top-to-bottom
+        //Using a vertical BoxLayout to stack items top-to-bottom
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         mainPanel.setBackground(new Color(230, 230, 250));
 
-        // 1. Logo (Top)
+        //Logo (Top)
         LogoPanel customLogo = new LogoPanel();
         customLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //2. Input Section Panel (Horizontal)
+        //Input Section Panel (Horizontal)
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        // MATCH INPUT PANEL COLOR
-        inputPanel.setBackground(new Color(245, 245, 255));
-    
+        inputPanel.setBackground(new Color(230, 230, 250));
     
         JLabel label = new JLabel("Enter string:");
         label.setForeground(new Color(75, 0, 130)); // Darker purple text for contrast
@@ -36,14 +34,14 @@ public class Assignment {
         inputPanel.add(label);
         inputPanel.add(inputField);
         
-
         RoundButton encodeButton = new RoundButton("Encode");
         encodeButton.setBackground(new Color(106, 13, 173)); 
         encodeButton.setForeground(Color.WHITE);
         encodeButton.setPreferredSize(new Dimension(100, 30)); // Makes it a nice pill shape
+        encodeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         inputPanel.add(encodeButton);
 
-        // 3. Result Section (Bottom)
+        //Result Section (Bottom)
         JTextArea displayArea = new JTextArea();
         displayArea.setBackground(new Color(250, 250, 255)); // Matching "Cute" background
         displayArea.setOpaque(false); // Crucial for showing the rounded background
@@ -59,7 +57,7 @@ public class Assignment {
         mainPanel.add(scrollPane);
     
         // --- Shared Logic ---
-        ActionListener encoderTask = new ActionListener() {
+            ActionListener encoderTask = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = inputField.getText();
@@ -80,16 +78,53 @@ public class Assignment {
 
                     displayArea.setText(output);
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Invalid Input! Use lowercase & spaces.");
-                }
-                // Contributed by [Member Name]
+                        //Create the dialog
+                        JDialog errorDialog = new JDialog(frame, "Error", true);
+                        errorDialog.getContentPane().setBackground(Color.WHITE);
+
+                        //Create a panel to hold everything vertically
+                        JPanel contentPanel = new JPanel();
+                        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+                        contentPanel.setBackground(new Color(230, 230, 250));
+                        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+                        //The Message Label
+                        JLabel msg = new JLabel("Invalid Input! Use lowercase & spaces.");
+                        msg.setForeground(new Color(106, 13, 173));
+                        msg.setFont(new Font("Arial", Font.BOLD, 14));
+                        msg.setAlignmentX(Component.CENTER_ALIGNMENT); // Center alignment for BoxLayout
+
+                        //A little spacer between text and button
+                        contentPanel.add(msg);
+                        contentPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+
+                        //The Round OK Button
+                        RoundButton okButton = new RoundButton("OK");
+                        okButton.setBackground(new Color(106, 13, 173));
+                        okButton.setForeground(Color.WHITE);
+                        okButton.setPreferredSize(new Dimension(80, 30));
+                        okButton.setMaximumSize(new Dimension(80, 30)); // Keeps the button from stretching
+                        okButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));      
+                        
+                        //Close logic
+                        okButton.addActionListener(ae -> errorDialog.dispose());
+
+                        //Final Assembly
+                        contentPanel.add(okButton);
+                        errorDialog.add(contentPanel);
+                                
+                        errorDialog.pack();
+                        errorDialog.setLocationRelativeTo(frame);
+                        errorDialog.setVisible(true);
+                 }
+                 //Contributed by [Member Name]
                 displayArea.setBackground(new Color(245, 245, 250)); // Very light grey/blue tint
                 displayArea.setForeground(new Color(106, 13, 173));  // Bold Purple text
                 displayArea.setFont(new Font("Monospaced", Font.BOLD, 14)); // Monospaced keeps characters aligned
                 displayArea.setMargin(new Insets(15, 15, 15, 15));   // Adds "breathable" space inside the box
-            }
+            }      
         };
-
         encodeButton.addActionListener(encoderTask);
         inputField.addActionListener(encoderTask);
 
