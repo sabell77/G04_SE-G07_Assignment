@@ -6,8 +6,11 @@ import java.awt.event.ActionListener;
 public class Assignment {
     public static void main(String[] args) {
         JFrame frame = new JFrame("String Encoder");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600); // Height increased for vertical stack
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         
         //Using a vertical BoxLayout to stack items top-to-bottom
         JPanel mainPanel = new JPanel();
