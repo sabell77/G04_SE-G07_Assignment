@@ -7,7 +7,7 @@ public class Encoded {
     private String resultText;
     
     // Secret groupID must be hardcoded and not visible at runtime [cite: 19, 20, 42]
-    private final String groupID = "G08/NC-G18"; 
+    private final String groupID = "G04/SE-G07"; 
 
     // Default Constructor 
     public Encoded() {
