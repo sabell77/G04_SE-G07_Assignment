@@ -28,7 +28,11 @@ public class Assignment {
         JLabel label = new JLabel("Enter string:");
         label.setForeground(new Color(75, 0, 130)); // Darker purple text for contrast
         label.setFont(new Font("Arial", Font.BOLD, 12));
-        JTextField inputField = new JTextField(20);
+
+        RoundField inputField = new RoundField(20, 20); // 20 columns, 20px corner radius
+        inputField.setBackground(Color.WHITE);
+        inputField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        
         JButton encodeButton = new JButton("Encode");
         inputPanel.add(label);
         inputPanel.add(inputField);
