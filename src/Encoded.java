@@ -6,7 +6,7 @@ public class Encoded {
     private int charCount;
     private String resultText;
     
-    // Secret groupID must be hardcoded and not visible at runtime [cite: 19, 20, 42]
+    // Secret groupID must be hardcoded and not visible at runtime 
     private final String groupID = "G04/SE-G07"; 
 
     // Default Constructor 
@@ -17,21 +17,21 @@ public class Encoded {
     public Encoded(String inputText) {
     }
 
-    // Contributed by: [Member 1 Name] [cite: 59]
+    // Contributed by: Isabella Roselinni
     public boolean checkStringValidity(String input) {
-        // Accepts only lowercase letters and spaces [cite: 17, 23]
+        // Accepts only lowercase letters and spaces 
         return input != null && input.matches("^[a-z0-9\\s]*$");
     }
 
-    // Contributed by: [Member 1 Name] [cite: 59]
+    // Contributed by: Isabella Roselinni
     public int countCharacters(String input) {
-        // Counts non-space characters [cite: 26]
+        // Counts non-space characters 
         if (input == null) return 0;
         this.charCount = input.replace(" ", "").length();
         return this.charCount;
     }
 
-    // Contributed by: [Member 2 Name] [cite: 59]
+    // Contributed by: 
     public int generateshift() {
         // groupShift derived from hashCode between 1 and 10 [cite: 27, 28]
         int hash = Math.abs(groupID.hashCode());
