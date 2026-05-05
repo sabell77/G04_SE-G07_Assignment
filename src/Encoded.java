@@ -33,24 +33,24 @@ public class Encoded {
 
     // Contributed by: 
     public int generateshift() {
-        // groupShift derived from hashCode between 1 and 10 [cite: 27, 28]
+        // groupShift derived from hashCode between 1 and 10 
         int hash = Math.abs(groupID.hashCode());
         return (hash % 10) + 1; 
     }
 
-    // Contributed by: [Member 2 Name] [cite: 59]
+    // Contributed by: 
     public String applyCipher(String input, int finalShift) {
         StringBuilder result = new StringBuilder();
         
         for (char c : input.toCharArray()) {
             if (Character.isLowerCase(c)) {
-                // Formula: (c - 'a' + finalShift) % 26 + 'a' [cite: 31, 35]
+                // Formula: (c - 'a' + finalShift) % 26 + 'a' 
                 result.append((char) ((c - 'a' + finalShift) % 26 + 'a'));
             } else if (Character.isDigit(c)) {
-                // Formula: (c - '0' + finalShift) % 10 + '0' [cite: 33, 36]
+                // Formula: (c - '0' + finalShift) % 10 + '0' 
                 result.append((char) ((c - '0' + finalShift) % 10 + '0'));
             } else {
-                // Spaces remain unchanged [cite: 37]
+                // Spaces remain unchanged 
                 result.append(c);
             }
         }
