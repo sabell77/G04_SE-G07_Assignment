@@ -20,3 +20,9 @@ To design a Java Swing application that generates an encoded version of a string
 * *Member 2**: Hashing (`hashCode`) & Cipher logic.
 * *Member 3**: Java Swing GUI components.
 * *Member 4**: Integration (`Assignment.java`) & Final Report.
+
+## 🛠️ Tech Stack
+- **Language:** Java
+- **GUI Framework:** Java Swing & AWT
+- **Graphics & Styling:** Java 2D (`Graphics2D`, `RenderingHints` with Custom Component Painting)
+- **Concepts:** Object-Oriented Programming (OOP), Event-Driven Architecture (`ActionListener`), Caesar Cipher Algorithm, Regex Pattern Matching
