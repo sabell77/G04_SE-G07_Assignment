@@ -16,7 +16,7 @@ This project implements a custom Caesar cipher-style encoder using Java Swing. I
    - [cite_start]Digits: `(c - '0' + finalShift) % 10 + '0'`[cite: 36].
 
 ## 👥 Team Responsibilities
-* [cite_start]**Member 1**: Core `Encoded` class & Validation[cite: 9, 23].
-* [cite_start]**Member 2**: Hashing (`hashCode`) & Cipher logic[cite: 27, 31].
-* [cite_start]**Member 3**: Java Swing GUI components[cite: 49].
-* [cite_start]**Member 4**: Integration (`Assignment.java`) & Final Report[cite: 62, 65].
+* *Member 1**: Core `Encoded` class & Validation[cite: 9, 23].
+* *Member 2**: Hashing (`hashCode`) & Cipher logic[cite: 27, 31].
+* *Member 3**: Java Swing GUI components[cite: 49].
+* *Member 4**: Integration (`Assignment.java`) & Final Report[cite: 62, 65].
