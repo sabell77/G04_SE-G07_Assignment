@@ -16,10 +16,10 @@ To design a Java Swing application that generates an encoded version of a string
    - Digits: `(c - '0' + finalShift) % 10 + '0'`.
 
 ## 👥 Team Responsibilities
-* *Member 1**: Core `Encoded` class & Validation.
-* *Member 2**: Hashing (`hashCode`) & Cipher logic.
-* *Member 3**: Java Swing GUI components.
-* *Member 4**: Integration (`Assignment.java`) & Final Report.
+* **Member 1**: Core `Encoded` class & Validation.
+* **Member 2**: Hashing (`hashCode`) & Cipher logic.
+* **Member 3**: Java Swing GUI components.
+* **Member 4**: Integration (`Assignment.java`) & Final Report.
 
 ## 🛠️ Tech Stack
 - **Language:** Java
